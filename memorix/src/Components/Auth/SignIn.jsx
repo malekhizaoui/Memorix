@@ -20,7 +20,7 @@ function SignIn({ setIsLoggedIn }) {
   const cookies = new Cookies();
   const login = () => {
     console.log("mlkhj");
-    Axios.post("https://idyllic-mooncake-3648fe.netlify.app/login", {
+    Axios.post("http://localhost:3001/login", {
       username,
       password,
     }).then((res) => {
