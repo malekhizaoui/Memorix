@@ -1,0 +1,8 @@
+.listAnime-container{
+    display: flex;
+    align-content: flex-start;
+    height: 100px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-around;
+}

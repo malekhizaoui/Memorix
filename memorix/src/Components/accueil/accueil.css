@@ -1,0 +1,37 @@
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Centers the text horizontally */
+    font-family: Arial, sans-serif;
+    margin-top: 150px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    color: #fff; /* Text color */
+    margin-bottom: 20px; /* Space between h1 and h2 */
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #fff; /* Text color */
+    margin-bottom: 20px; /* Space between h2 and the button */
+  }
+  
+  button {
+    background-color: turquoise; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition:  0.3s ease; /* Smooth background color transition */
+  }
+  
+  button:hover {
+    background-color: #0a8a9d; /* Button background color on hover */
+  }
+  
