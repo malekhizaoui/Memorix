@@ -127,7 +127,7 @@ function DuoGame() {
             })
           );
           resetTurns();
-        }, 300);
+        }, 500);
         if (playerA.turn) {
           setPlayerA({ ...playerA, turn: false });
           setPlayerB({ ...playerB, turn: true });

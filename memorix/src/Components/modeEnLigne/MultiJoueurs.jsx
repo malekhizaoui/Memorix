@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
-import "./onlineGame.css"
+import "./onlineGame.css";
 
-  const states={
-    cards: [
-      {
-        src: "gon.jpg",      // Image de la carte
-        name: "gon",          // Nom de la carte
-        right: true           // Indique si la carte est correctement associée
-      },
-      {
-        src: "leorio.jpg",    // Image de la carte
-        name: "leorio",       // Nom de la carte
-        right: true,          // Indique si la carte est correctement associée
-      },
-      // ... Ajoutez d'autres cartes ici
-    ],
-    mainPlayer:{ turn: true, score: 0 },
-    enemyPlayer:{ turn: true, score: 0 },
-    choix1: "kil.jpg",    
-    choix2: null, 
-  }
-
-
-
-
+const states = {
+  cards: [
+    {
+      src: "gon.jpg", // Image de la carte
+      name: "gon", // Nom de la carte
+      right: true, // Indique si la carte est correctement associée
+    },
+    {
+      src: "leorio.jpg", // Image de la carte
+      name: "leorio", // Nom de la carte
+      right: true, // Indique si la carte est correctement associée
+    },
+    // ... Ajoutez d'autres cartes ici
+  ],
+  mainPlayer: { turn: true, score: 0 },
+  enemyPlayer: { turn: true, score: 0 },
+  choix1: "kil.jpg",
+  choix2: null,
+};
 
 function MultiJoueurs({ perssonages }) {
   const [cards, setCards] = useState(perssonages);
@@ -110,7 +106,7 @@ function MultiJoueurs({ perssonages }) {
     setMainPlayer({ turn: true, score: 0 });
     setEnemyPlayer({ turn: true, score: 0 });
   };
-  const checkWinner=()=>{
+  const checkWinner = () => {
     if (mainPlayer.score + enemyPlayer.score === 6) {
       if (mainPlayer.score > enemyPlayer.score) {
         console.log("You are the winner");
@@ -120,9 +116,9 @@ function MultiJoueurs({ perssonages }) {
         console.log("equalityyy");
       }
     }
-  }
+  };
   useEffect(() => {
-    checkWinner()
+    checkWinner();
     channel.on(async (event) => {
       if (event.type == "game-move" && event.user.id !== client.userID) {
         setCards(event.data.newCards);
@@ -142,7 +138,6 @@ function MultiJoueurs({ perssonages }) {
         setCards(event.data.shuffledCards);
       }
     });
-
   }, [cards, mainPlayer]);
   return (
     <div className="game-style">
@@ -151,7 +146,6 @@ function MultiJoueurs({ perssonages }) {
       </div>
 
       <div className="image-grid">
-
         {cards.map((card, index) => (
           <div className="card" key={index}>
             {card.right ? (
@@ -159,7 +153,7 @@ function MultiJoueurs({ perssonages }) {
             ) : (
               <img
                 className="back"
-                src="https://services.meteored.com/img/article/the-night-sky-are-the-stars-we-see-really-dead-already-185092-1_1280.jpg"
+                src={require('../../image/backgrounds/back-Card.jpg')}
                 onClick={() => {
                   handleTurns(card, index);
                 }}
