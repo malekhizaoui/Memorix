@@ -44,10 +44,10 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
         {t('acceuil')}
       </a>
       <a href="GameMode" className="btn-a">
-        Mode
+        {t('mode')}
       </a>
       <a href="ListAnime" className="btn-a">
-        Animes
+        {t('anime')}
       </a>
       {isLoggedIn ? (
         <a className="btn-a" onClick={logOut} href="#">

@@ -18,6 +18,7 @@
     font-size: 24px;
     color: #fff; /* Text color */
     margin-bottom: 20px; /* Space between h2 and the button */
+    max-width:50%;
   }
   
   button {

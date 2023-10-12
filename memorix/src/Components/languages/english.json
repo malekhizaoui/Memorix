@@ -28,7 +28,9 @@
         "deconexion":"Log out",
         "frensh":"frensh",
         "english":"english",
-        "german":"german"
+        "german":"german",
+        "mode":"Mode",
+        "Anime":"Anime"
 
     }
 }
