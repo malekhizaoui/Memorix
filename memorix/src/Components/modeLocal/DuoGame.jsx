@@ -183,7 +183,7 @@ function DuoGame() {
             ) : (
               <img
                 className="back flipped"
-                src={require('../../image/back-Card.jpg')}
+                src={require('../../image/backgrounds/back-Card.jpg')}
                 onClick={() => {
                   handleTurns(card);
                 }}

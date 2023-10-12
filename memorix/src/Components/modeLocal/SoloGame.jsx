@@ -136,7 +136,7 @@ function SoloGame() {
             ) : (
               <img
                 className="back"
-                src={require('../../image/back-Card.jpg')}
+                src={require('../../image/backgrounds/back-Card.jpg')}
                 onClick={() => {
                   handleTurns(card);
                 }}
