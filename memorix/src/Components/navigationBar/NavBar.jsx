@@ -9,17 +9,7 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
   const navigate = useNavigate();
   const { t,i18n } = useTranslation();
 
-  const getLang=async()=>{
-   const lang= localStorage.getItem('language')
-   if(lang){
-    changeLang(lang)
-  }else{
-    changeLang('fr')
-  }
-  }
-  useEffect(()=>{
-    getLang()
-  },[])
+  
   const changeLang=(lang)=>{
     localStorage.setItem("language",lang)
     i18n.changeLanguage(lang)
