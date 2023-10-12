@@ -173,12 +173,7 @@ function DuoGame() {
           {playerA.turn ? " is playing" : " is watching"}
         </h2>
       </div>
-      <div className="user-game-style">
-        <h2>
-           Player B : {playerB.score}
-          {playerB.turn ? " is playing" : " wait your turn ..."}
-        </h2>
-      </div>
+     
 
       <div className="image-grid">
         {cards.map((card, index) => (
@@ -200,7 +195,12 @@ function DuoGame() {
         <h1></h1>
         <button onClick={shuffleCard}>newGame</button>
       </div>
-      
+      <div className="user-game-style">
+        <h2>
+           Player B : {playerB.score}
+          {playerB.turn ? " is playing" : " wait your turn ..."}
+        </h2>
+      </div>
     </div>
   );
 }
