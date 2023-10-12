@@ -67,7 +67,10 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
         {t('frensh')}
       </a>
       <a  className="active btn-a" onClick={()=>{changeLang("en")}}>
-        {t('English')}
+        {t('english')}
+      </a>
+      <a  className="active btn-a" onClick={()=>{changeLang("deu")}}>
+        {t('german')}
       </a>
         
       </div>

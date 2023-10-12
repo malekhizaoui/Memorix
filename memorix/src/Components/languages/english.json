@@ -25,7 +25,10 @@
         "joinOrStart": "Join / Start",
         "waitPlayer": "Waiting for another player to join...",
         "requestNewGame":"Your opponent wants to play another game with you.",
-        "deconexion":"Log out"
+        "deconexion":"Log out",
+        "frensh":"frensh",
+        "english":"english",
+        "german":"german"
 
     }
 }

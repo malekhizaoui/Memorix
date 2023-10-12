@@ -1,0 +1,33 @@
+{
+    "translation": {
+        "acceuil": "Startseite",
+        "welcome": "Begib dich auf eine herausragende Reise in die faszinierende Welt des Animes und stelle dein Gedächtnis auf eine exquisit Herausforderung!",
+        "start": "Start",
+        "multijoueur": "ONLINE-MULTISPIELER",
+        "play": "Spielen",
+        "descriptionSolo": "HERAUSFORDERUNG DEIN GEDÄCHTNIS IN EINEM SOLO-GEDÄCHTNIS-SPIEL UND SCHLÄGT DEINE EIGENEN PUNKTE, UM ZUM GEDÄCHTNISMEISTER ZU WERDEN!",
+        "descriptionDuo": "LAD EINEN FREUND EIN, MIT DIR IN EINEM FREUNDLICHEN GEDÄCHTNIS-WETTBEWERB ZU SPIELEN, WO NUR DAS BESTE GEHIRNPARTNER GEWINNEN WIRD.",
+        "descriptionMultijoueur": "VERBINDE DICH UND STELLE DICH GEGNERN AUS ALLER WELT IN EINEM HEFTIGEN KAMPF UM DIE ONLINE-GEDÄCHTNIS-VORHERRSCHAFT!",
+        "choixAnime": "Wähle deinen Anime",
+        "login": "Einloggen",
+        "Sign up": "Registrieren",
+        "name": "Vorname",
+        "lastname": "Nachname",
+        "username": "Benutzername",
+        "password": "Passwort",
+        "player": "Spieler",
+        "isPlay": "spielt",
+        "waitTurn": "wartet auf deinen Zug...",
+        "newGame": "Erneut spielen",
+        "turn": "Züge",
+        "CreateGame": "Ein Spiel erstellen",
+        "userRival": "Benutzername des Rivalen...",
+        "joinOrStart": "Beitreten / Starten",
+        "waitPlayer": "Wartet auf einen weiteren Spieler...",
+        "requestNewGame": "Dein Gegner möchte noch ein Spiel mit dir spielen.",
+        "deconexion": "Ausloggen",
+        "frensh": "Französisch",
+        "english": "Englisch",
+        "german": "Deutsch"
+    }
+}
