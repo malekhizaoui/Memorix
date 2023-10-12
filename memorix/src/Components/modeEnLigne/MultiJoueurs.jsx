@@ -159,6 +159,18 @@ function MultiJoueurs({ perssonages }) {
             </div>
           </Modal>
         ) : null}
+        {mainPlayer.score + enemyPlayer.score === 6 && enemyPlayer.score>mainPlayer.score ?
+         <Modal>
+         <div>
+           <h1>
+             you lost 
+           </h1>
+
+           <button style={{ marginRight: 5 }} onClick={shuffleCard}> rejouer</button>
+           {/* <button onClick={()=>{setNewGameModal(false)}}> Annuler</button> */}
+         </div>
+       </Modal>
+       :null}
         {cards.map((card, index) => (
           <div className="card" key={index}>
             {card.right ? (
