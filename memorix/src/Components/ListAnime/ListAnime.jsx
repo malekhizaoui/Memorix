@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import Card from "./Card";
 import { useLocation } from "react-router-dom";
 import data from "../../data/data";
+import { useTranslation } from 'react-i18next';
+
 import './card.css'
 function ListAnime() {
+  const { t } = useTranslation();
+
   const location = useLocation();
   const mode = location.state && location.state.mode;
   useEffect(() => {
@@ -11,7 +15,8 @@ function ListAnime() {
   }, []);
   return (
     <div>
-      <h1>choose your Anime</h1>
+      <h1>              {t("choixAnime")}
+</h1>
       <div class="listAnime-container">
 
       {data.map((anime, index) => {

@@ -4,11 +4,14 @@ import { StreamChat } from "stream-chat";
 import { useLocation } from "react-router-dom";
 import Game from "./Game"
 import './onlineGame.css'
+import { useTranslation } from 'react-i18next';
 function JoinRoom() {
     const location = useLocation();
     const [enemyUserName, setEnemyUsername] = useState("");
     const [channel, setChannel] = useState(null);
     const api_key = "dcqq9m3xdtzr";
+    const { t } = useTranslation();
+
     const client = StreamChat.getInstance(api_key);
     console.log("");
     const createChannel = async () => {
@@ -33,6 +36,7 @@ function JoinRoom() {
 
   return (
 <>
+{/* <Modal>lkhds</Modal> */}
 
       {channel ? (
         <Chat client={client}>
@@ -40,16 +44,15 @@ function JoinRoom() {
         </Chat>
       ) : (
         <Chat client={client} >
-
         <div className="joinGame">
-          <h4>Create Game</h4>
+          <h4>{t("CreateGame")}</h4>
           <input
             placeholder="Username of rival..."
             onChange={(event) => {
                 setEnemyUsername(event.target.value);
             }}
           />
-          <button onClick={()=>{createChannel()}}> Join/Start Game</button>
+          <button onClick={()=>{createChannel()}}>{t("joinOrStart")}</button>
         </div>
         </Chat>
 

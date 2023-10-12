@@ -1,7 +1,3 @@
-import onePIECE from "../image/onePiece/onePIECE.jpg"
-import attackOnTitan from"../image/attackOnTitan/attackOnTitan.jpg"
-import blackClover from "../image/blackClover/blackClover.jpg"
-import demonSlayer from "../image/demonSlayer/demonSlayer.jpg"
 const data =[
     {
       "name": "One Piece",

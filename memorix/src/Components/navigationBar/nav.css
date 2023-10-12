@@ -18,7 +18,7 @@ a.active{
     border-left:  1px solid rgb(64, 224, 208);;
 }
 .style-nav{
-    flex:content;
+    display:flex;
     padding: 35px;
     box-shadow: 0px 0px 80px black;
 }

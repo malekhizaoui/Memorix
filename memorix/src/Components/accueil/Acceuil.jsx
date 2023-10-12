@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 import './accueil.css'
 function Acceuil() {
     const navigate = useNavigate()
+    const { t } = useTranslation();
 
   return (
     <div className="homepage-container">
-      <h1>Acceuil</h1>
+      <h1>{t("acceuil")}</h1>
       <h2>
-      Voyagez avec distinction dans le monde captivant des animes, <br/>tout en soumettant votre mémoire à un défi exquis !      </h2>
+      {t("welcome")}
+      {/* dsdds */}
+      </h2>
       <button
         onClick={() => {
           navigate("/GameMode");
         }}
       >
-        Start
+        {t('start')}
       </button>
     </div>
   );

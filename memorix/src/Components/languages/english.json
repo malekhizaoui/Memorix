@@ -1,0 +1,31 @@
+{
+    "translation": {
+        "acceuil": "Home",
+        "welcome": "Embark on a distinguished journey into the captivating world of anime while putting your memory to an exquisite challenge!",
+        "start": "Start",
+        "multijoueur": "ONLINE MULTIPLAYER",
+        "play":"Play",
+        "descriptionSolo": "CHALLENGE YOURSELF IN A SOLO MEMORY GAME AND BEAT YOUR OWN SCORES TO BECOME THE MEMORY MASTER!",
+        "descriptionDuo": "INVITE A FRIEND TO JOIN YOU IN A FRIENDLY MEMORY COMPETITION, WHERE ONLY THE BEST PAIR OF BRAINS WILL PREVAIL",
+        "descriptionMultijoueur": "CONNECT AND FACE OPPONENTS FROM AROUND THE WORLD IN A FIERCE BATTLE FOR ONLINE MEMORY SUPREMACY!",
+        "choixAnime": "Choose Your Anime",
+        "login": "Log In",
+        "Sign up": "Sign Up",
+        "name": "First Name",
+        "lastname": "Last Name",
+        "username": "Username",
+        "password": "Password",
+        "player": "Player",
+        "isPlay": "is playing",
+        "waitTurn": "waiting for your turn...",
+        "newGame": "Play Again",
+        "turn": "Turns",
+        "CreateGame": "Create a Game",
+        "userRival": "Username of Rival...",
+        "joinOrStart": "Join / Start",
+        "waitPlayer": "Waiting for another player to join...",
+        "requestNewGame":"Your opponent wants to play another game with you.",
+        "deconexion":"Log out"
+
+    }
+}

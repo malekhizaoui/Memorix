@@ -1,0 +1,32 @@
+{
+    "translation": {
+        "acceuil":"Acceuil",
+        "welcome":"Voyagez avec distinction dans le monde captivant des animes, tout en soumettant votre mémoire à un défi exquis !",
+        "start":"Commencer",
+        "multijoueur":"MULTIJOUEUR EN LIGNE",
+        "play":"Jouer",
+        "descriptionSolo":"METTEZ-VOUS AU DÉFI DANS UN JEU DE MÉMOIRE EN SOLO ET BATTEZ VOS PROPRES SCORES POUR DEVENIR LE MAÎTRE DE LA MÉMOIRE !",
+        "descriptionDuo":"INVITEZ UN AMI À SE JOINDRE À VOUS DANS UNE COMPÉTITION AMICALE DE MÉMOIRE, OÙ SEULE LA MEILLEURE PAIRE DE CERVEAUX L'EMPORTERA",
+        "descriptionMultijoueur":"CONNECTEZ-VOUS ET AFFRONTEZ DES ADVERSAIRES DU MONDE ENTIER DANS UNE BATAILLE ACHARNÉE POUR LA SUPRÉMATIE DE LA MÉMOIRE EN LIGNE !",
+        "choixAnime":"choisissez votre animé",
+        "login":"se connecter",
+        "Sign up":"S'inscrire",
+        "name":"Prénom",
+        "lastname":"Nom",
+        "username":"Nom d'utilisateur",
+        "password":"Mot de passe",
+        "player":"Joueur",
+        "isPlay":"est en train de jouer",
+        "waitTurn":"attends ton tour ...",
+        "newGame":"Rejouer",
+        "turn":"Tours",
+        "CreateGame":"Créer une chaîne",
+        "userRival":"Username of rival ...",
+        "joinOrStart" :"Rejoindre / Commencer",
+        "waitPlayer":"En attente qu'un autre joueur rejoigne ....",
+        "requestNewGame":"Votre adversaire souhaite jouer une autre partie avec vous.",
+        "deconexion":"Log out"
+        
+    }
+
+}

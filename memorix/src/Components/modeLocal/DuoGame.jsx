@@ -2,45 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import './localGame.css'
 
-
-const states = {
-  // Cartes du jeu
-  cards: [
-    {
-      src: "gon.jpg",      // Image de la carte
-      name: "gon",          // Nom de la carte
-      right: true           // Indique si la carte est correctement associée
-    },
-    {
-      src: "leorio.jpg",    // Image de la carte
-      name: "leorio",       // Nom de la carte
-      right: true,          // Indique si la carte est correctement associée
-    },
-    // ... Ajoutez d'autres cartes ici
-  ],
-  
-  // État du joueur A
-  playerA: {
-    turn: false,  // Indique si c'est le tour du joueur A
-    score: 2      // Le score du joueur A
-  },
-  
-  // État du joueur B
-  playerB: {
-    turn: true,  // Indique si c'est le tour du joueur B
-    score: 0     // Le score du joueur B
-  },
-  
-  // Choix du joueur B (pour les cartes retournées)
-  choix1: null,  // Première carte choisie par le joueur B
-  choix2: null,  // Deuxième carte choisie par le joueur B
-  
-  // Nombre de cartes déjà retournées en face visible
-  done: 2         // Le nombre de cartes déjà retournées en face visible
-};
-
-
-console.log(states);
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -48,13 +10,14 @@ console.log(states);
 
 function DuoGame() {
   const location = useLocation();
-  const [turns, setTurns] = useState(0);
+  // const [turns, setTurns] = useState(0);
   const [playerA, setPlayerA] = useState({ turn: true, score: 0 });
   const [playerB, setPlayerB] = useState({ turn: false, score: 0 });
   const [done, setDone] = useState(0);
   const [choix1, setChoix1] = useState(null);
   const [choix2, setChoix2] = useState(null);
   const [cards, setCards] = useState([...location.state]);
+  const { t } = useTranslation();
 
  
 
@@ -160,7 +123,7 @@ function DuoGame() {
       .sort(() => Math.random() - 0.5)
       .map((card, index) => ({ ...card, id: index }));
     setCards(shuffledCards);
-    setTurns(0);
+    // setTurns(0);
     setDone(0);
     setPlayerB({ ...playerB, score: 0 });
     setPlayerA({ ...playerA, score: 0 });
@@ -169,7 +132,7 @@ function DuoGame() {
     <div className="game-style">
       <div className="user-game-style">
         <h2>
-           Player A : {playerA.score}
+           {t("player")} A : {playerA.score}
           {playerA.turn ? " is playing" : " is watching"}
         </h2>
       </div>
@@ -197,8 +160,8 @@ function DuoGame() {
       </div>
       <div className="user-game-style">
         <h2>
-           Player B : {playerB.score}
-          {playerB.turn ? " is playing" : " wait your turn ..."}
+           {t('play')} B : {playerB.score}
+          {playerB.turn ? t('isPlay') : t("waitTurn")}
         </h2>
       </div>
     </div>

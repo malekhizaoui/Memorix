@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import NavBar from './Components/navigationBar/NavBar';
 import reportWebVitals from "./reportWebVitals";
+import i18n from './Components/languages/i18n';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

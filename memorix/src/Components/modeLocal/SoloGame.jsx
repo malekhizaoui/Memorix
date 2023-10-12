@@ -1,44 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import './localGame.css'
+import { useTranslation } from 'react-i18next';
 
-const states = {
-  // Cartes du jeu
-  cards: [
-    {
-      src: "noelle.jpg",   // Image de la première carte
-      name: "noelle",      // Nom de la première carte
-      right: true          // Indique si la première carte est correctement associée
-    },
-    {
-      src: "noelle.jpg",   // Image de la deuxième carte (même image que la première)
-      name: "noelle",      // Nom de la deuxième carte (même nom que la première)
-      right: true          // Indique si la deuxième carte est correctement associée
-    },
-    {
-      src: "finral.jpg",   // Image de la troisième carte
-      name: "finral",      // Nom de la troisième carte
-      right: true          // Indique si la troisième carte est correctement associée
-    },
-    {
-      src: "finral.jpg",   // Image de la quatrième carte (même image que la troisième)
-      name: "finral",      // Nom de la quatrième carte (même nom que la troisième)
-      right: false         // Indique que la quatrième carte n'est pas correctement associée
-    },
-    // ... Ajoutez d'autres cartes ici
-  ],
 
-  // Nombre de tours effectués
-  turns: 5,             // Le nombre de tours déjà joués
-
-  // Choix du joueur (pour les cartes retournées)
-  choix1: "kil.jpg",    // Première carte choisie par l'utilisateur
-  choix2: null,         // Deuxième carte choisie par l'utilisateur (pas encore choisie)
-
-  // Nombre de cartes déjà retournées en face visible
-  done: 1               // Le nombre de cartes déjà retournées en face visible
-};
-console.log(states);
 function SoloGame() {
   const location = useLocation();
   const [turns, setTurns] = useState(0);
@@ -48,6 +13,8 @@ function SoloGame() {
   const [cards, setCards] = useState([
     ...location.state,
   ]);
+  const { t } = useTranslation();
+
 
   const handleTurns = (card) => {
     choix1 ? setChoix2(card.src) : setChoix1(card.src);
@@ -125,7 +92,7 @@ function SoloGame() {
   return (
     <div className="game-style-solo">
       <div>
-        <h2>Turns : {turns} </h2>
+        <h2>{t('turn')} : {turns} </h2>
       </div>
       
       <div className="image-grid">

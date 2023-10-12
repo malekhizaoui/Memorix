@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 import { StreamChat } from "stream-chat";
-import { useLocation } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 import "./auth.css";
 function SignIn({ setIsLoggedIn }) {
   const location = useLocation();
-  const multijoueur = location.state && location.state.mode;
   const navigate = useNavigate();
   const api_key = "dcqq9m3xdtzr";
   const client = StreamChat.getInstance(api_key);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    console.log("location.state", !!location.state);
-  }, []);
+
   const cookies = new Cookies();
   const login = () => {
-    console.log("mlkhj");
     Axios.post("http://localhost:3001/login", {
       username,
       password,
@@ -51,22 +49,22 @@ function SignIn({ setIsLoggedIn }) {
       <div className="login">
         <form>
           <label htmlFor="chk" aria-hidden="true">
-            Login
+            {t("login")}
           </label>
           <input
-            placeholder="Username"
+            placeholder={t("username")}
             onChange={(event) => {
               setUsername(event.target.value);
             }}
           />
           <input
-            placeholder="Password"
+            placeholder={t("password")}
             type="password"
             onChange={(event) => {
               setPassword(event.target.value);
             }}
           />
-          <button type="button" className="btn-auth" onClick={login}>Login</button>
+          <button type="button" className="btn-auth" onClick={login}>{t("login")}</button>
         </form>
       </div>
   );
