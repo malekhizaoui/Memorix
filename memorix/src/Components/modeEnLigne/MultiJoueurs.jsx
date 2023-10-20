@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import "./onlineGame.css";
 import Modal from "./Modal";
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
 
 function MultiJoueurs({ perssonages }) {
   const [cards, setCards] = useState(perssonages);
@@ -26,7 +25,7 @@ function MultiJoueurs({ perssonages }) {
       }
       return element;
     });
-    if (mainPlayer.turn && !newGameModal ) {
+    if (mainPlayer.turn && !newGameModal) {
       const resetCard = cards.map((element, idx) => {
         if (element.src === choix1 || element.src === choix2) {
           return { ...element, right: false };
@@ -87,20 +86,18 @@ function MultiJoueurs({ perssonages }) {
     if (!newGameModal) {
       await channel.sendEvent({
         type: "request-new-Game",
-        data: { gameModal: true  },
+        data: { gameModal: true },
       });
-    }else{
+    } else {
       await channel.sendEvent({
         type: "new-Game",
-        data: { shuffledCards},
+        data: { shuffledCards },
       });
-    setCards(shuffledCards);
-    setMainPlayer({ turn: true, score: 0 });
-    setEnemyPlayer({ turn: true, score: 0 });
-    setNewGameModal(false)
+      setCards(shuffledCards);
+      setMainPlayer({ turn: true, score: 0 });
+      setEnemyPlayer({ turn: true, score: 0 });
+      setNewGameModal(false);
     }
-
-  
   };
   const checkWinner = () => {
     if (mainPlayer.score + enemyPlayer.score === 6) {
@@ -128,7 +125,10 @@ function MultiJoueurs({ perssonages }) {
       if (event.type === "success-move" && event.user.id !== client.userID) {
         setEnemyPlayer({ ...enemyPlayer, score: event.data.enemyScore });
       }
-      if (event.type === "request-new-Game" && event.user.id !== client.userID) {
+      if (
+        event.type === "request-new-Game" &&
+        event.user.id !== client.userID
+      ) {
         setNewGameModal(event.data.gameModal);
         // setMainPlayer({ turn: true, score: 0 });
         // setEnemyPlayer({ turn: true, score: 0 });
@@ -147,7 +147,7 @@ function MultiJoueurs({ perssonages }) {
         <h2>Score Player A :{mainPlayer.score}</h2>
       </div>
       <div className="image-grid">
-        {newGameModal ? (
+        {/* {newGameModal ? (
           <Modal>
             <div>
               <h4>
@@ -158,19 +158,35 @@ function MultiJoueurs({ perssonages }) {
               <button onClick={()=>{setNewGameModal(false)}}> Annuler</button>
             </div>
           </Modal>
-        ) : null}
-        {mainPlayer.score + enemyPlayer.score === 6 && enemyPlayer.score>mainPlayer.score ?
-         <Modal>
-         <div>
-           <h1>
-             you lost 
-           </h1>
+        ) : null} */}
+        {mainPlayer.score + enemyPlayer.score === 6 &&
+        enemyPlayer.score > mainPlayer.score ? (
+          <>
+            {mainPlayer.score + enemyPlayer.score === 6 ? (
+              <Modal>
+                <div>
+                  <h1>you lost</h1>
 
-           <button style={{ marginRight: 5 }} onClick={shuffleCard}> rejouer</button>
-           {/* <button onClick={()=>{setNewGameModal(false)}}> Annuler</button> */}
-         </div>
-       </Modal>
-       :null}
+                  <button style={{ marginRight: 5 }} onClick={shuffleCard}>
+                   
+                    rejouer
+                  </button>
+                </div>
+              </Modal>
+            ) : (
+              <Modal>
+                <div>
+                  <h1>you won</h1>
+
+                  <button style={{ marginRight: 5 }} onClick={shuffleCard}>
+                    {" "}
+                    rejouer
+                  </button>
+                </div>
+              </Modal>
+            )}
+          </>
+        ) : null}
         {cards.map((card, index) => (
           <div className="card" key={index}>
             {card.right ? (

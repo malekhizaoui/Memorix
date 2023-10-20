@@ -155,6 +155,7 @@ function DuoGame() {
             )}
           </div>
         ))}
+
         <h1></h1>
         <button onClick={shuffleCard}>newGame</button>
       </div>

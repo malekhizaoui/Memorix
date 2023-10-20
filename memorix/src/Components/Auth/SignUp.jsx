@@ -12,7 +12,7 @@ function SignUp() {
   const { t } = useTranslation();
 
   const signUp = () => {
-    Axios.post("http://localhost:3001/signup", user).then((res) => {
+    Axios.post("https://memorixappgameserver.onrender.com/signup", user).then((res) => {
       const { token, userId, firstName, lastName, username, hashedPassword } =
         res.data;
       cookies.set("token", token);
