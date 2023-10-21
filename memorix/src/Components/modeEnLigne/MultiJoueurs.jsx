@@ -3,15 +3,14 @@ import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import "./onlineGame.css";
 import Modal from "./Modal";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 function MultiJoueurs({ perssonages }) {
   const [cards, setCards] = useState(perssonages);
-  // const [turns, setTurns] = useState(0);
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const [mainPlayer, setMainPlayer] = useState({ turn: true, score: 0 });
   const [enemyPlayer, setEnemyPlayer] = useState({ turn: true, score: 0 });
-  // const [done, setDone] = useState(0);
   const [newGameModal, setNewGameModal] = useState(false);
   const [choix1, setChoix1] = useState(null);
   const [choix2, setChoix2] = useState(null);
@@ -48,7 +47,7 @@ function MultiJoueurs({ perssonages }) {
             setCards(resetCard);
             setChoix1(null);
             setChoix2(null);
-          }, 300);
+          }, 500);
           setMainPlayer({ ...mainPlayer, turn: false });
           setEnemyPlayer({ ...enemyPlayer, turn: true });
         } else {
@@ -73,16 +72,11 @@ function MultiJoueurs({ perssonages }) {
     }
   };
 
-  useEffect(() => {
-    console.log("choix1", choix1);
-    console.log("choix2", choix2);
-    console.log("mainPlayer.turn", mainPlayer.turn);
-    console.log("enemyPlayer", enemyPlayer.turn);
-  });
   const shuffleCard = async () => {
     const shuffledCards = perssonages
       .sort(() => Math.random() - 0.5)
       .map((card, index) => ({ ...card, id: index }));
+    console.log("newGameModal", !newGameModal);
     if (!newGameModal) {
       await channel.sendEvent({
         type: "request-new-Game",
@@ -130,9 +124,8 @@ function MultiJoueurs({ perssonages }) {
         event.user.id !== client.userID
       ) {
         setNewGameModal(event.data.gameModal);
-        // setMainPlayer({ turn: true, score: 0 });
-        // setEnemyPlayer({ turn: true, score: 0 });
-        // setCards(event.data.shuffledCards);
+        setMainPlayer({ turn: true, score: 0 });
+        setEnemyPlayer({ turn: true, score: 0 });
       }
       if (event.type === "new-Game" && event.user.id !== client.userID) {
         setMainPlayer({ turn: true, score: 0 });
@@ -147,45 +140,64 @@ function MultiJoueurs({ perssonages }) {
         <h2>Score Player A :{mainPlayer.score}</h2>
       </div>
       <div className="image-grid">
-        {/* {newGameModal ? (
-          <Modal>
-            <div>
-              <h4>
-                {t("requestNewGame")}
-              </h4>
 
-              <button style={{ marginRight: 5 }} onClick={shuffleCard}> OK</button>
-              <button onClick={()=>{setNewGameModal(false)}}> Annuler</button>
-            </div>
-          </Modal>
-        ) : null} */}
-        {mainPlayer.score + enemyPlayer.score === 6 &&
-        enemyPlayer.score > mainPlayer.score ? (
+        {mainPlayer.score + enemyPlayer.score === 6 ? (
           <>
-            {mainPlayer.score + enemyPlayer.score === 6 ? (
+            {enemyPlayer.score > mainPlayer.score ? (
               <Modal>
                 <div>
                   <h1>you lost</h1>
 
                   <button style={{ marginRight: 5 }} onClick={shuffleCard}>
-                   
                     rejouer
+                  </button>
+                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                    quitter le jeu
                   </button>
                 </div>
               </Modal>
-            ) : (
+              
+            ) :enemyPlayer.score < mainPlayer.score ? (
               <Modal>
                 <div>
                   <h1>you won</h1>
 
                   <button style={{ marginRight: 5 }} onClick={shuffleCard}>
-                    {" "}
                     rejouer
+                  </button>
+                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                    quitter le jeu
                   </button>
                 </div>
               </Modal>
-            )}
+            ):
+            <Modal>
+                <div>
+                  <h1>Draw</h1>
+
+                  <button style={{ marginRight: 5 }} onClick={shuffleCard}>
+                    rejouer
+                  </button>
+                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                    quitter le jeu
+                  </button>
+                </div>
+              </Modal>
+            }
           </>
+        ) : null}
+
+
+        {newGameModal ? (
+          <Modal>
+            <div>
+              <h1>your enemy want to play onther game withou you</h1>
+
+              <button style={{ marginRight: 5 }} onClick={shuffleCard}>
+                rejouer
+              </button>
+            </div>
+          </Modal>
         ) : null}
         {cards.map((card, index) => (
           <div className="card" key={index}>

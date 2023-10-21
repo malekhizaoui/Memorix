@@ -52,9 +52,9 @@ export default function MediaCard({ anime, mode }) {
       onClick={() => {
         mode.mode === "solo"
           ? navigate("/soloGame", { state: personnages })
-          : mode.mode === "multijoueur"
+          : mode.mode === "DuoGame"
           ? navigate("/JoinRoom", { state: personnages })
-          : navigate("/DuoGame", { state: personnages });
+          : navigate("/JoinRoom", { state: personnages });
       }}
     >
       <CardActionArea style={{justifyContent:"center",alignContent:"center",alignItems:"center"}}>

@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import './localGame.css'
-
+import Modal from "../modeEnLigne/Modal";
 import { useTranslation } from 'react-i18next';
-
-
-
-
+import { useNavigate } from "react-router-dom";
 
 function DuoGame() {
   const location = useLocation();
-  // const [turns, setTurns] = useState(0);
   const [playerA, setPlayerA] = useState({ turn: true, score: 0 });
   const [playerB, setPlayerB] = useState({ turn: false, score: 0 });
   const [done, setDone] = useState(0);
@@ -18,6 +14,8 @@ function DuoGame() {
   const [choix2, setChoix2] = useState(null);
   const [cards, setCards] = useState([...location.state]);
   const { t } = useTranslation();
+  const [modalFinish,setModalFinish]=useState(false)
+  const navigate = useNavigate();
 
  
 
@@ -49,26 +47,23 @@ function DuoGame() {
     }
   };
   useEffect(() => {
-    console.log("cards", cards);
-    console.log("choix1", choix1);
-    console.log("choix2", choix2);
-    console.log("playerA", playerA);
-    console.log("playerB", playerB);
-
     checkTurns();
   }, [choix1, choix2]);
+
+
   const resetTurns = () => {
     setChoix1(null);
     setChoix2(null);
   };
+
   const checkWinner=()=>{
     if (done === 6) {
       if (playerA.score > playerB.score) {
-        alert("player A won");
+        setModalFinish(true)
       } else if (playerA.score < playerB.score) {
-        alert("player B won");
+        setModalFinish(true)
       } else {
-        alert("DRAW");
+        setModalFinish(true)
       }
     }
   }
@@ -118,6 +113,11 @@ function DuoGame() {
       }
     }
   }
+  const replay=()=>{
+    resetTurns()
+    setModalFinish(false)
+    shuffleCard()
+  }
   const shuffleCard = () => {
     const shuffledCards = [...location.state]
       .sort(() => Math.random() - 0.5)
@@ -165,6 +165,23 @@ function DuoGame() {
           {playerB.turn ? t('isPlay') : t("waitTurn")}
         </h2>
       </div>
+      {
+        modalFinish?(
+        <Modal>
+          <div>
+                  <h1>{playerA.score>playerB.score?"Player A is the winner"
+                    :playerA.score===playerB.score?
+                  "Draw":"Player A is the winner"}</h1>
+
+                  <button style={{ marginRight: 5 }} onClick={()=>{replay()}}>
+                    rejouer
+                  </button>
+                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                    quitter le jeu
+                  </button>
+                </div>
+        </Modal>):null
+      }
     </div>
   );
 }

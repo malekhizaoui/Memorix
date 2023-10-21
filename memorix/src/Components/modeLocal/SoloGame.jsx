@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import './localGame.css'
 import { useTranslation } from 'react-i18next';
-
+import Modal from "../modeEnLigne/Modal";
+import { useNavigate } from "react-router-dom";
 
 function SoloGame() {
   const location = useLocation();
   const [turns, setTurns] = useState(0);
+  const navigate = useNavigate();
   const [done, setDone] = useState(0);
   const [choix1, setChoix1] = useState(null);
   const [choix2, setChoix2] = useState(null);
@@ -14,7 +16,7 @@ function SoloGame() {
     ...location.state,
   ]);
   const { t } = useTranslation();
-
+  const [modalFinish,setModalFinish]=useState(false)
 
   const handleTurns = (card) => {
     choix1 ? setChoix2(card.src) : setChoix1(card.src);
@@ -44,7 +46,8 @@ function SoloGame() {
 
   const checkTurns = () => {  
     if(done===6){
-        alert("you finish")
+        setModalFinish(true)
+        resetTurns()
     }
     if (choix1 && choix2) {
       if (choix1 !== choix2) {
@@ -71,6 +74,11 @@ function SoloGame() {
     }
   };
 
+  const replay=()=>{
+    resetTurns()
+    setModalFinish(false)
+    shuffleCard()
+  }
   useEffect(() => {
     console.log("location", location);
    
@@ -115,6 +123,18 @@ function SoloGame() {
       </div>
       <button onClick={shuffleCard}>newGame</button>
 
+                {modalFinish?<Modal>
+                  <div>
+                  <h1>you lost</h1>
+
+                  <button style={{ marginRight: 5 }} onClick={()=>{replay()}}>
+                    rejouer
+                  </button>
+                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                    quitter le jeu
+                  </button>
+                </div>
+                </Modal>:null}
     </div>
   );
 }
