@@ -11,6 +11,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const cookies = new Cookies();
   const token = cookies.get("token");
+  const userId = cookies.get("userId");
   const api_key = "ja2mczkz2wf7";
   const client = StreamChat.getInstance(api_key);
   const { t,i18n } = useTranslation();
@@ -30,10 +31,8 @@ function App() {
      getLang()
    },[])
   const retrieveUserSession = () => {
-    if (token) {
       if (token) {
-        client
-          .connectUser(
+        client.connectUser(
             {
               id: cookies.get("userId"),
               name: cookies.get("username"),
@@ -43,18 +42,13 @@ function App() {
             },
             token
           )
-          .then((user) => {
-            console.log("user", user);
-            setIsLoggedIn(true);
-          });
-      }
+          setIsLoggedIn(true)
     }
   };
-
   useEffect(() => {
-    console.log("isLoggedIn,", isLoggedIn);
+    console.log("userId,", userId);
     retrieveUserSession();
-  });
+  },[isLoggedIn]);
 
   return (
     <Router>

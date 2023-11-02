@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import "./auth.css";
-function SignUp() {
+function SignUp({setIsLoggedIn}) {
   const navigate = useNavigate();
   const cookies = new Cookies();
   const [user, setUser] = useState(null);
@@ -15,13 +15,15 @@ function SignUp() {
     Axios.post("https://memorixappgameserver.onrender.com/signup", user).then((res) => {
       const { token, userId, firstName, lastName, username, hashedPassword } =
         res.data;
+        console.log("res.data",res.data);
       cookies.set("token", token);
       cookies.set("userId", userId);
       cookies.set("username", username);
       cookies.set("firstName", firstName);
       cookies.set("lastName", lastName);
       cookies.set("hashedPassword", hashedPassword);
-      navigate("/SignIn");
+      setIsLoggedIn(true)
+      navigate('/')
     });
   };
   return (
