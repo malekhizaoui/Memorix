@@ -37,7 +37,7 @@ export default function MediaCard({ anime, mode }) {
   };
 
   useEffect(() => {
-    console.log("mode", mode);
+    console.log("modesssfromcard", mode);
 
     shuffleCard();
   }, []);
@@ -50,14 +50,26 @@ export default function MediaCard({ anime, mode }) {
         backgroundColor: "Transparent",
       }}
       onClick={() => {
-        mode.mode === "solo"
+        if(mode){
+          mode.mode === "solo"
           ? navigate("/soloGame", { state: personnages })
-          : mode.mode === "DuoGame"
-          ? navigate("/JoinRoom", { state: personnages })
-          : navigate("/JoinRoom", { state: personnages });
+          : mode.mode === "duo"
+          ? navigate("/DuoGame", { state: personnages })
+          : navigate("/JoinRoom");
+        }
+        else{
+          navigate("/GameMode")
+        }
+        
       }}
     >
-      <CardActionArea style={{justifyContent:"center",alignContent:"center",alignItems:"center"}}>
+      <CardActionArea
+        style={{
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
         <CardMedia
           className={classes.media}
           image={anime.src}
@@ -67,11 +79,8 @@ export default function MediaCard({ anime, mode }) {
           <Typography gutterBottom variant="h5" component="h2">
             {anime.name}
           </Typography>
-          
         </CardContent>
       </CardActionArea>
-     
     </Card>
   );
 }
-

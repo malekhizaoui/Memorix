@@ -11,7 +11,7 @@ function ListAnime() {
   const location = useLocation();
   const mode = location.state && !location.state.mode;
   useEffect(() => {
-    console.log("mode", location.state);
+    // console.log("modesss", location.state);
   }, []);
   return (
     <div>
@@ -22,15 +22,7 @@ function ListAnime() {
             <Card
               anime={anime}
               key={index}
-              mode={
-                mode === "duo"
-                  ? { mode: "duo" }
-                  : mode === "solo"
-                  ? { mode: "solo" }
-                  : mode === "multijoueur"
-                  ? { mode: "multijoueur" }
-                  : "multijoueur"
-              }
+              mode={location.state}
             />
           );
         })}
