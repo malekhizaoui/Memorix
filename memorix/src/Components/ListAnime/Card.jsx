@@ -55,7 +55,7 @@ export default function MediaCard({ anime, mode }) {
           ? navigate("/soloGame", { state: personnages })
           : mode.mode === "duo"
           ? navigate("/DuoGame", { state: personnages })
-          : navigate("/JoinRoom");
+          : navigate("/JoinRoom", { state: personnages });
         }
         else{
           navigate("/GameMode")

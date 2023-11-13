@@ -132,8 +132,8 @@ function DuoGame() {
     <div className="game-style">
       <div className="user-game-style">
         <h2>
-           {t("player")} A : {playerA.score}
-          {playerA.turn ? " is playing" : " is watching"}
+           {t("player")} A : {playerA.score}{" "}
+          {playerA.turn ? t('isPlay') : t("waitTurn")}
         </h2>
       </div>
      
@@ -161,7 +161,7 @@ function DuoGame() {
       </div>
       <div className="user-game-style">
         <h2>
-           {t('play')} B : {playerB.score}
+           {t('player')}  B : {playerB.score}{" "}
           {playerB.turn ? t('isPlay') : t("waitTurn")}
         </h2>
       </div>
@@ -171,7 +171,7 @@ function DuoGame() {
           <div>
                   <h1>{playerA.score>playerB.score?"Player A is the winner"
                     :playerA.score===playerB.score?
-                  "Draw":"Player A is the winner"}</h1>
+                  "Draw":"Player B is the winner"}</h1>
 
                   <button style={{ marginRight: 5 }} onClick={()=>{replay()}}>
                     rejouer

@@ -8,7 +8,7 @@ function Game({ perssonages, channel }) {
     channel.state.watcher_count === 2
   );
   const { t } = useTranslation();
-
+    
   useEffect(() => {
     channel.on("user.watching.start", (event) => {
       setPlayersJoined(event.watcher_count === 2);

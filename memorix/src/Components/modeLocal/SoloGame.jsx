@@ -125,7 +125,7 @@ function SoloGame() {
 
                 {modalFinish?<Modal>
                   <div>
-                  <h1>you lost</h1>
+                  <h1>Congratulation you finish the Game</h1>
 
                   <button style={{ marginRight: 5 }} onClick={()=>{replay()}}>
                     rejouer

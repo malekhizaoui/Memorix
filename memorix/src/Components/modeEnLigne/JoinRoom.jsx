@@ -11,7 +11,7 @@ function JoinRoom() {
     const [channel, setChannel] = useState(null);
     const api_key = "dcqq9m3xdtzr";
     const { t } = useTranslation();
-
+  console.log("location.state",location.state);
     const client = StreamChat.getInstance(api_key);
     console.log("");
     const createChannel = async () => {

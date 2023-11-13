@@ -133,6 +133,7 @@ function MultiJoueurs({ perssonages }) {
         setCards(event.data.shuffledCards);
       }
     });
+   
   }, [cards, mainPlayer]);
   return (
     <div className="game-style">
@@ -140,7 +141,6 @@ function MultiJoueurs({ perssonages }) {
         <h2>Score Player A :{mainPlayer.score}</h2>
       </div>
       <div className="image-grid">
-
         {mainPlayer.score + enemyPlayer.score === 6 ? (
           <>
             {enemyPlayer.score > mainPlayer.score ? (
@@ -151,13 +151,17 @@ function MultiJoueurs({ perssonages }) {
                   <button style={{ marginRight: 5 }} onClick={shuffleCard}>
                     rejouer
                   </button>
-                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                  <button
+                    style={{ marginRight: 5 }}
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  >
                     quitter le jeu
                   </button>
                 </div>
               </Modal>
-              
-            ) :enemyPlayer.score < mainPlayer.score ? (
+            ) : enemyPlayer.score < mainPlayer.score ? (
               <Modal>
                 <div>
                   <h1>you won</h1>
@@ -165,28 +169,37 @@ function MultiJoueurs({ perssonages }) {
                   <button style={{ marginRight: 5 }} onClick={shuffleCard}>
                     rejouer
                   </button>
-                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                  <button
+                    style={{ marginRight: 5 }}
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  >
                     quitter le jeu
                   </button>
                 </div>
               </Modal>
-            ):
-            <Modal>
+            ) : (
+              <Modal>
                 <div>
                   <h1>Draw</h1>
 
                   <button style={{ marginRight: 5 }} onClick={shuffleCard}>
                     rejouer
                   </button>
-                  <button style={{ marginRight: 5 }} onClick={()=>{navigate('/')}}>
+                  <button
+                    style={{ marginRight: 5 }}
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  >
                     quitter le jeu
                   </button>
                 </div>
               </Modal>
-            }
+            )}
           </>
         ) : null}
-
 
         {newGameModal ? (
           <Modal>
