@@ -4,7 +4,8 @@ import "./onlineGame.css";
 import Modal from "./Modal";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
+import { Window, MessageList, MessageInput } from "stream-chat-react";
+import './chat.css'
 function MultiJoueurs({ perssonages }) {
   const [cards, setCards] = useState(perssonages);
   const { t } = useTranslation();
@@ -235,7 +236,21 @@ function MultiJoueurs({ perssonages }) {
 
       <div className="user-game-style">
         <h2>Score Player B :{enemyPlayer.score}</h2>
+        
       </div>
+      <div className="gameContainer">
+        <Window>
+        <MessageList
+          disableDateSeparator
+          closeReactionSelectorOnClick
+          hideDeletedMessages
+          messageActions={["react"]}
+          
+        />
+        <MessageInput/>
+      </Window>
+      </div>
+      
     </div>
   );
 }
