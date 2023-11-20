@@ -12,7 +12,7 @@ function App() {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const userId = cookies.get("userId");
-  const api_key = "ja2mczkz2wf7";
+  const api_key = "msyqt539twqg";
   const client = StreamChat.getInstance(api_key);
   const { t,i18n } = useTranslation();
   const changeLang=(lang)=>{
@@ -46,7 +46,7 @@ function App() {
     }
   };
   useEffect(() => {
-    console.log("userId,", userId);
+    // console.log("userId,", userId);
     retrieveUserSession();
   },[isLoggedIn]);
 

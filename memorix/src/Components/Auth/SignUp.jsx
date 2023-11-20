@@ -12,7 +12,7 @@ function SignUp({setIsLoggedIn}) {
   const { t } = useTranslation();
 
   const signUp = () => {
-    Axios.post("https://memorixappgameserver.onrender.com/signup", user).then((res) => {
+    Axios.post("http://localhost:3001/signup", user).then((res) => {
       const { token, userId, firstName, lastName, username, hashedPassword } =
         res.data;
         console.log("res.data",res.data);
@@ -24,7 +24,11 @@ function SignUp({setIsLoggedIn}) {
       cookies.set("hashedPassword", hashedPassword);
       setIsLoggedIn(true)
       navigate('/')
-    });
+    }).catch((err)=>
+    {
+      console.log("err",err);
+    }
+    );
   };
   return (
     <div className="signup">

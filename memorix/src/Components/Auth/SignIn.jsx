@@ -9,7 +9,7 @@ import "./auth.css";
 function SignIn({ setIsLoggedIn }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const api_key = "dcqq9m3xdtzr";
+  const api_key = "msyqt539twqg";
   const client = StreamChat.getInstance(api_key);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,11 +18,12 @@ function SignIn({ setIsLoggedIn }) {
 
   const cookies = new Cookies();
   const login = () => {
-    console.log("djhv");
-    Axios.post("https://memorixappgameserver.onrender.com/login", {
+    console.log("djhv",username);
+    Axios.post("http://localhost:3001/login", {
       username,
       password,
     }).then((res) => {
+      console.log("res.data",res.data);
       const { firstName, lastName, username, token, userId } = res.data;
       client.connectUser(
         {
