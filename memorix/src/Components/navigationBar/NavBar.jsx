@@ -26,7 +26,6 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
     setIsLoggedIn(false);
     navigate("/");
   };
-  
   return (
     <div className="style-nav">
       <div style={{flex:1}}>

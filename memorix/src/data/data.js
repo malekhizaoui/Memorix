@@ -3,12 +3,12 @@ const data =[
       "name": "One Piece",
       "src":require("../image/onePiece/onePIECE.jpg"),
       "personnages": [
-        
         {
           
           "src": require("../image/onePiece/luffy.jpg"),
           "name": "Monkey D. Luffy",
-          "right": false
+          "right": false,
+          "images":[require('../image/onePiece/luffy2.jpg'),require("../image/onePiece/luffy.jpg")]
         },
         {
           "src": require("../image/onePiece/zoro.jpg"),

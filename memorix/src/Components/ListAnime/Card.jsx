@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
     flexWrap: "wrap",
-    // maxWidth: 345,
     backgroundColor: "Transparent",
   },
   media: {
@@ -29,7 +26,13 @@ export default function MediaCard({ anime, mode }) {
   const [personnages, setPersonnages] = useState([]);
 
   const shuffleCard = () => {
-    const shuffledCards = [...anime.personnages, ...anime.personnages]
+    const cardsFirstHalf=anime.personnages.map((elem)=>{
+      return {...elem,image:elem.images?.length>=1?elem.images[0]:elem.src}
+    })
+    const cardsSecondtHalf=anime.personnages.map((elem)=>{
+      return {...elem,image:elem.images?.length>=2?elem.images[1]:elem.src}
+    })
+    const shuffledCards = [...cardsFirstHalf, ...cardsSecondtHalf]
       .sort(() => Math.random() - 0.5)
       .map((card, index) => ({ ...card, id: index }));
 
@@ -37,8 +40,6 @@ export default function MediaCard({ anime, mode }) {
   };
 
   useEffect(() => {
-    console.log("modesssfromcard", mode);
-
     shuffleCard();
   }, []);
 

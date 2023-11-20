@@ -5,7 +5,10 @@ import Modal from "./Modal";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Window, MessageList, MessageInput } from "stream-chat-react";
-import './chat.css'
+import "./chat.css";
+import GameBoard from "../componentsUi/GameBoard";
+import CheckWinner from "../componentsUi/CheckWinner";
+import UserScore from "../componentsUi/UserScore";
 function MultiJoueurs({ perssonages }) {
   const [cards, setCards] = useState(perssonages);
   const { t } = useTranslation();
@@ -134,123 +137,53 @@ function MultiJoueurs({ perssonages }) {
         setCards(event.data.shuffledCards);
       }
     });
-   
   }, [cards, mainPlayer]);
   return (
     <div className="game-style">
-      <div className="user-game-style">
-        <h2>Score Player A :{mainPlayer.score}</h2>
-      </div>
-      <div className="image-grid">
-        {mainPlayer.score + enemyPlayer.score === 6 ? (
-          <>
-            {enemyPlayer.score > mainPlayer.score ? (
-              <Modal>
-                <div>
-                  <h1>you lost</h1>
-
-                  <button style={{ marginRight: 5 }} onClick={shuffleCard}>
-                    rejouer
-                  </button>
-                  <button
-                    style={{ marginRight: 5 }}
-                    onClick={() => {
-                      navigate("/");
-                    }}
-                  >
-                    quitter le jeu
-                  </button>
-                </div>
-              </Modal>
-            ) : enemyPlayer.score < mainPlayer.score ? (
-              <Modal>
-                <div>
-                  <h1>you won</h1>
-
-                  <button style={{ marginRight: 5 }} onClick={shuffleCard}>
-                    rejouer
-                  </button>
-                  <button
-                    style={{ marginRight: 5 }}
-                    onClick={() => {
-                      navigate("/");
-                    }}
-                  >
-                    quitter le jeu
-                  </button>
-                </div>
-              </Modal>
-            ) : (
-              <Modal>
-                <div>
-                  <h1>Draw</h1>
-
-                  <button style={{ marginRight: 5 }} onClick={shuffleCard}>
-                    rejouer
-                  </button>
-                  <button
-                    style={{ marginRight: 5 }}
-                    onClick={() => {
-                      navigate("/");
-                    }}
-                  >
-                    quitter le jeu
-                  </button>
-                </div>
-              </Modal>
-            )}
-          </>
-        ) : null}
-
-        {newGameModal ? (
-          <Modal>
-            <div>
-              <h1>your enemy want to play onther game withou you</h1>
-
-              <button style={{ marginRight: 5 }} onClick={shuffleCard}>
-                rejouer
-              </button>
-            </div>
-          </Modal>
-        ) : null}
-        {cards.map((card, index) => (
-          <div className="card" key={index}>
-            {card.right ? (
-              <img className="front" src={card.src} alt="Card front" />
-            ) : (
-              <img
-                className="back"
-                src={require("../../image/backgrounds/back-Card.jpg")}
-                onClick={() => {
-                  handleTurns(card, index);
-                }}
-                alt="Card back"
-              />
-            )}
-          </div>
-        ))}
-
-        <h1></h1>
-        <button onClick={shuffleCard}>newGame</button>
-      </div>
-
-      <div className="user-game-style">
-        <h2>Score Player B :{enemyPlayer.score}</h2>
-        
-      </div>
+      {mainPlayer.score + enemyPlayer.score === 6 ? (
+        <>
+          {enemyPlayer.score > mainPlayer.score ? (
+            <Modal>
+              <CheckWinner isWinner={"you lost"} shuffleCard={shuffleCard} />
+            </Modal>
+          ) : enemyPlayer.score < mainPlayer.score ? (
+            <Modal>
+              <CheckWinner isWinner={"you won"} shuffleCard={shuffleCard} />
+            </Modal>
+          ) : (
+            <Modal>
+              <CheckWinner isWinner={"Draw"} shuffleCard={shuffleCard} />
+            </Modal>
+          )}
+        </>
+      ) : null}
+      {newGameModal ? (
+        <Modal>
+          <CheckWinner
+            isWinner={"your enemy want to play another game with you"}
+            shuffleCard={shuffleCard}
+          />
+        </Modal>
+      ) : null}
+      <UserScore player={mainPlayer} whichPlayer={"My score"} t={t}/>
+      <GameBoard
+        cards={cards}
+        handleTurns={handleTurns}
+        solo={false}
+        shuffleCard={shuffleCard}
+      />
+      <UserScore player={enemyPlayer} whichPlayer={"Enemy score"} t={t}/>
       <div className="gameContainer">
         <Window>
-        <MessageList
-          disableDateSeparator
-          closeReactionSelectorOnClick
-          hideDeletedMessages
-          messageActions={["react"]}
-          
-        />
-        <MessageInput/>
-      </Window>
+          <MessageList
+            disableDateSeparator
+            closeReactionSelectorOnClick
+            hideDeletedMessages
+            messageActions={["react"]}
+          />
+          <MessageInput />
+        </Window>
       </div>
-      
     </div>
   );
 }
