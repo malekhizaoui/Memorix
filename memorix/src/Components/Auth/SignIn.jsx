@@ -19,7 +19,7 @@ function SignIn({ setIsLoggedIn }) {
   const cookies = new Cookies();
   const login = () => {
     console.log("djhv",username);
-    Axios.post("http://localhost:3001/login", {
+    Axios.post("https://memorixappgameserver.onrender.com/login", {
       username,
       password,
     }).then((res) => {
