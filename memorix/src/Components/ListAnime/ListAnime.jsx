@@ -11,7 +11,7 @@ function ListAnime() {
   const location = useLocation();
   const mode = location.state && !location.state.mode;
   useEffect(() => {
-    // console.log("modesss", location.state);
+    console.log("modesss", location.state);
   }, []);
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./nav.css";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +8,8 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const { t,i18n } = useTranslation();
-
-  
+  const [active,setActive]=useState("acceuil")
+  const getLang=localStorage.getItem("language")
   const changeLang=(lang)=>{
     localStorage.setItem("language",lang)
     i18n.changeLanguage(lang)
@@ -30,13 +30,13 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
   return (
     <div className="style-nav">
       <div style={{flex:1}}>
-      <a href="/" className="active btn-a">
+      <a onClick={()=>{setActive('accueil');navigate('/')}} href="#"  className={active==="accueil"?"active btn-a":"btn-a"}>
         {t('acceuil')}
       </a>
-      <a href="GameMode" className="btn-a">
+      <a onClick={()=>{setActive('mode');navigate('/GameMode')}}href="#"   className={active==="mode"?"active btn-a":"btn-a"}>
         {t('mode')}
       </a>
-      <a href="ListAnime" className="btn-a">
+      <a onClick={()=>{setActive('anime');navigate('/ListAnime')}} href="#"  className={active==="anime"?"active btn-a":"btn-a"}>
         {t('anime')}
       </a>
       {isLoggedIn ? (
@@ -53,13 +53,13 @@ function NavBar({ isLoggedIn, setIsLoggedIn, client }) {
       )}
       </div>
       <div>
-      <a  className="active btn-a" onClick={()=>{changeLang("fr")}}>
+      <a  className={getLang==="fr"?"active btn-a":"btn-a"} onClick={()=>{changeLang("fr")}}>
         {t('frensh')}
       </a>
-      <a  className="active btn-a" onClick={()=>{changeLang("en")}}>
+      <a  className={getLang==="en"?"active btn-a":"btn-a"}  onClick={()=>{changeLang("en")}}>
         {t('english')}
       </a>
-      <a  className="active btn-a" onClick={()=>{changeLang("deu")}}>
+      <a  className={getLang==="deu"?"active btn-a":"btn-a"}  onClick={()=>{changeLang("deu")}}>
         {t('german')}
       </a>
         

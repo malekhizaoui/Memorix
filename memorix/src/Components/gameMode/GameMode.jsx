@@ -1,26 +1,40 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./GameMode.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 function GameMode({ isLoggedIn }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
-
+  const fromListAnime = location.state && location.state;
+  console.log("fromListAnime", fromListAnime);
   const choosMultiPlayer = () => {
     if (isLoggedIn) {
-      navigate("/ListAnime", { state: { mode: "multijoueur" } });
+      if (fromListAnime) {
+        navigate("/JoinRoom", { state: fromListAnime });
+      } else {
+        navigate("/ListAnime", { state: { mode: "multijoueur" } });
+      }
     } else {
       navigate("/Auth", { state: { mode: "multijoueur" } });
     }
   };
 
   const chooseSolo = () => {
-    navigate("/ListAnime", { state: { mode: "solo" } });
+    if (fromListAnime) {
+      navigate("/SoloGame", { state: fromListAnime });
+    } else {
+      navigate("/ListAnime", { state: { mode: "solo" } });
+    }
   };
 
   const chooseDuo = () => {
-    navigate("/ListAnime", { state: { mode: "duo" } });
+    if (fromListAnime) {
+      navigate("/DuoGame", { state: fromListAnime });
+    } else {
+      navigate("/ListAnime", { state: { mode: "duo" } });
+    }
   };
 
   return (
@@ -32,9 +46,7 @@ function GameMode({ isLoggedIn }) {
           </div>
 
           <div class="button-wrapper">
-            <p>
-              {t("descriptionSolo")}
-            </p>
+            <p>{t("descriptionSolo")}</p>
             <button type="button" onClick={chooseSolo} class="btn outline">
               {t("play")}
             </button>
@@ -54,8 +66,7 @@ function GameMode({ isLoggedIn }) {
               <br />
             </p>
             <button onClick={chooseDuo} type="button" class="btn outline">
-            {t("play")}
-
+              {t("play")}
             </button>
           </div>
         </div>
@@ -63,13 +74,11 @@ function GameMode({ isLoggedIn }) {
       <div class="container">
         <div class="wrapper">
           <div class="banner-image" id="multijoueur-image">
-            <h1 className="mode-name">{t('multijoueur')}</h1>
+            <h1 className="mode-name">{t("multijoueur")}</h1>
           </div>
 
           <div class="button-wrapper">
-            <p>
-              {t('descriptionMultijoueur')}
-            </p>
+            <p>{t("descriptionMultijoueur")}</p>
             <button
               onClick={choosMultiPlayer}
               type="button"

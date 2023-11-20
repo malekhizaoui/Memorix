@@ -58,7 +58,8 @@ export default function MediaCard({ anime, mode }) {
           : navigate("/JoinRoom", { state: personnages });
         }
         else{
-          navigate("/GameMode")
+          console.log("kb");
+          navigate("/GameMode",{state:personnages})
         }
         
       }}

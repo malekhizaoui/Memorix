@@ -14,16 +14,15 @@ function SignIn({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { t } = useTranslation();
-
+  const mode = location.state && location.state.mode;
+  console.log("mode",mode);
 
   const cookies = new Cookies();
   const login = () => {
-    console.log("djhv",username);
     Axios.post("https://memorixappgameserver.onrender.com/login", {
       username,
       password,
     }).then((res) => {
-      console.log("res.data",res.data);
       const { firstName, lastName, username, token, userId } = res.data;
       client.connectUser(
         {
@@ -31,7 +30,6 @@ function SignIn({ setIsLoggedIn }) {
           name: username,
           firstName: firstName,
           lastName: lastName,
-          // hashedPassword: cookies.get("hashedPassword"),
         },
         token
       );
@@ -42,7 +40,9 @@ function SignIn({ setIsLoggedIn }) {
       cookies.set("lastName", lastName);
       console.log("mlkn", location.state);
       setIsLoggedIn(true);
-      location.state? navigate("/ListAnime", { mode: location.state.mode }): navigate("/GameMode");
+      mode?navigate("/ListAnime",{ state: mode }):navigate('/GameMode')
+        
+      // location.state? navigate("/ListAnime", { mode: location.state.mode }): navigate("/GameMode");
     }).catch((err)=>{
       console.log("err",err);
     });
