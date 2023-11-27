@@ -30,6 +30,20 @@
         "english": "Englisch",
         "german": "Deutsch",
         "mode": "Modus",
-        "Anime": "Anime"
+        "Anime": "Anime",
+        "finishGame": "Herzlichen Glückwunsch, dass Sie das Spiel beendet haben",
+        "playerAWin": "Spieler A ist der Gewinner",
+        "playerBWin": "Spieler B ist der Gewinner",
+        "draw": "Unentschieden",
+        "rivaleName": "Benutzername des Rivalen",
+        "enemyWantPlayAgain": "Dein Gegner möchte noch ein Spiel mit dir spielen",
+        "myScore": "Mein Punktestand",
+        "enemyScroe": "Gegnerischer Punktestand",
+        "lost": "Du hast verloren",
+        "won": "Du hast gewonnen",
+        "userNotFound": "Benutzer nicht gefunden",
+        "replay": "Wiederholen",
+        "quitGame": "Spiel verlassen",
+        "sendMessage": "Nachricht senden"
     }
 }

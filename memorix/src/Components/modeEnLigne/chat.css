@@ -1,5 +1,5 @@
 .gameContainer {
-    width: 100vw;
+    width: 80vw;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -8,6 +8,8 @@
     column-gap: 100px;
     border-radius: 2px;
     box-shadow: 0px 0px 0px black;
+    flex:1.5;
+    padding-right: 20px;
 
   }
   .inputCustom{

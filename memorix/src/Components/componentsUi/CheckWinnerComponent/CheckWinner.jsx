@@ -1,15 +1,15 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 function CheckWinner({isWinner,shuffleCard,duo=false,replay}) {
     const navigate = useNavigate();
-
+    const {t}=useTranslation()
   return (
     <div>
     <h1>{isWinner}</h1>
 
     <button style={{ marginRight: 5 }} onClick={!duo? shuffleCard:replay}>
-      rejouer
+      {t('replay')}
     </button>
     <button
       style={{ marginRight: 5 }}
@@ -17,7 +17,7 @@ function CheckWinner({isWinner,shuffleCard,duo=false,replay}) {
         navigate("/");
       }}
     >
-        Quitter le jeu
+        {t('quitGame')}
     </button>
   </div>
   )

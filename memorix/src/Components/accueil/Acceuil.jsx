@@ -10,15 +10,8 @@ function Acceuil() {
   return (
     <div className="homepage-container">
       <h1>{t("acceuil")}</h1>
-      <h2>
-      {t("welcome")}
-      {/* dsdds */}
-      </h2>
-      <button
-        onClick={() => {
-          navigate("/GameMode");
-        }}
-      >
+      <h2>{t("welcome")}</h2>
+      <button onClick={() => {navigate("/GameMode");}}>
         {t('start')}
       </button>
     </div>

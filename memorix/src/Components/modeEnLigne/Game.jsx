@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Channel } from "stream-chat-react";
 import MultiJoueurs from "./MultiJoueurs";
 import { useTranslation } from 'react-i18next';
-import CustomInput from "./CustomInput";
+import CustomInput from "../componentsUi/inputChatComponent/CustomInput";
 function Game({ perssonages, channel }) {
   const [playersJoined, setPlayersJoined] = useState(
     channel.state.watcher_count === 2

@@ -8,7 +8,7 @@ function GameMode({ isLoggedIn }) {
   const location = useLocation();
   const { t } = useTranslation();
   const fromListAnime = location.state && location.state;
-  console.log("fromListAnime", fromListAnime);
+
   const choosMultiPlayer = () => {
     if (isLoggedIn) {
       if (fromListAnime) {

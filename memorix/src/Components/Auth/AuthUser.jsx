@@ -8,7 +8,6 @@ function AuthUser({setIsLoggedIn}) {
       <div className='auth-container'>
       <input type="checkbox" id="chk" aria-hidden="true" />
       <SignUp setIsLoggedIn={setIsLoggedIn}/>
-      
       <SignIn setIsLoggedIn={setIsLoggedIn}/>
     </div>
     </div>

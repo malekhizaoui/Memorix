@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import "./localGame.css";
-import Modal from "../modeEnLigne/Modal";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import Modal from "../componentsUi/modalComonent/Modal";
 import { useGame } from "./useGame";
-import GameBoard from "../componentsUi/GameBoard";
-import CheckWinner from "../componentsUi/CheckWinner";
-import UserScore from "../componentsUi/UserScore";
+import GameBoard from "../componentsUi/GameBoradComponent/GameBoard";
+import CheckWinner from "../componentsUi/CheckWinnerComponent/CheckWinner";
+import UserScore from "../componentsUi/userScoreComponent/UserScore";
 function DuoGame() {
-  const navigate = useNavigate();
   const {
     replay,
     playerA,
@@ -20,7 +16,6 @@ function DuoGame() {
     cards,
     t,
   } = useGame(false);
-  console.log("modalFinish",modalFinish);
   return (
     <div className="game-style">
     
@@ -37,10 +32,10 @@ function DuoGame() {
           <CheckWinner
             isWinner={
               playerA.score > playerB.score
-                ? "Player A is the winner"
+                ? t('playerAWin')
                 : playerA.score === playerB.score
-                ? "Draw"
-                : "Player B is the winner"
+                ? t('draw')
+                : t('playerBWin')
             }
             shuffleCard={shuffleCard}
             replay={replay}
