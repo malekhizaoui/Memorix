@@ -41,7 +41,6 @@ Follow these simple steps to install and start the game:
 
 ## Contributors
 
-- Your Name (@your-username)
-- Any other contributors
+- Malek Habib Hizaoui
 
 Feel free to contribute or report issues! Happy gaming!
